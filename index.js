@@ -13,10 +13,6 @@ const PORT = process.env.PORT || 8080;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
-
 app.use("/auth", AuthRouter);
 app.use("/", MainRouter);
 

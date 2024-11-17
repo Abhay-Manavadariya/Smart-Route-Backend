@@ -17,6 +17,9 @@ const geoLocationDataSchema = new Schema(
       type: Number,
       default: 0,
     },
+    distance: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

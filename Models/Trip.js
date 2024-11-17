@@ -25,9 +25,6 @@ const tripSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
-    distance: {
-      type: Number,
-    },
   },
   { timestamps: true }
 );

@@ -5,7 +5,9 @@ const VehicleInfoModel = require("../Models/VehicleInfo");
 
 const Data_Collection = async (req, res) => {
   try {
-    const { locationHistory, pathId, userId, vehicleId } = req.body;
+    const { locationHistory, pathId, userId, vehicleId, totalDistance } =
+      req.body;
+
     const pathObjectId = new mongoose.Types.ObjectId(pathId);
     const vehicleObjectId = new mongoose.Types.ObjectId(vehicleId);
     const userObjectId = new mongoose.Types.ObjectId(userId);
@@ -27,9 +29,8 @@ const Data_Collection = async (req, res) => {
       };
     });
 
-    const averageSpeed = totalSpeed / locationHistory.length; 
-    const averageKineticEnergy =
-      totalKineticEnergy / locationHistory.length;
+    const averageSpeed = totalSpeed / locationHistory.length;
+    const averageKineticEnergy = totalKineticEnergy / locationHistory.length;
 
     const trip = new TripModel({
       start_time: new Date(locationHistory[0].timestamp),
@@ -48,6 +49,7 @@ const Data_Collection = async (req, res) => {
       trip_id: tripId,
       average_speed: averageSpeed,
       average_kinetic_energy: averageKineticEnergy,
+      distance: totalDistance,
     });
 
     await geoLocation.save();

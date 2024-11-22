@@ -19,7 +19,7 @@ const Data_Collection = async (req, res) => {
     let totalKineticEnergy = 0;
 
     const updatedLocationHistory = locationHistory.map((location) => {
-      const speed = location.speed || 0;
+      const speed = location.speed / 3.6 || 0;
       totalSpeed += speed;
       const kineticEnergy = 0.5 * mass * Math.pow(speed, 2);
       totalKineticEnergy += kineticEnergy;
